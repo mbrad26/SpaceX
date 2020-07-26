@@ -64,8 +64,10 @@ const App = () => {
   }, [handleFetchData]);
 
   return (
-    <>
-      <h1>Hello World</h1>
+    <div className='container'>
+      <div className='row justify-content-center'>
+        <h1>Hello World</h1>
+      </div>
 
       <button value='rockets' onClick={handleFetchData}>Rockets</button>
       <button value='dragons' onClick={handleFetchData}>Dragons</button>
@@ -76,7 +78,7 @@ const App = () => {
         ? <p>Loading ...</p>
         : <List data={state.data} />
       }
-    </>
+    </div>
   )
 };
 
