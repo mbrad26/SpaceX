@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useCallback, useRef } from 'react';
 import './App.css';
+import List from '../List/List';
 import axios from 'axios';
 
 const API_ENDPOINT = 'https://api.spacexdata.com/v3/';
@@ -60,7 +61,7 @@ const App = () => {
     } else {
       handleFetchData();
     }
-  }, []);
+  }, [handleFetchData]);
 
   return (
     <>
@@ -71,14 +72,9 @@ const App = () => {
 
       {state.isError && <h3>Something is wrong ...</h3>}
 
-      {state.loading && <p>Loading ...</p>}
-
-      {state.data &&
-        <ul>{state.data.map(item =>
-          <li key={item.id}>
-            {item.flickr_images.map((url) => <img src={url} key={url} width='200'/>)}
-          </li>)}
-        </ul>
+      {state.loading
+        ? <p>Loading ...</p>
+        : <List data={state.data} />
       }
     </>
   )
