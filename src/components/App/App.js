@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useReducer, useCallback, useRef } from 'react';
 import './App.css';
 import List from '../List/List';
 import axios from 'axios';
 
 const API_ENDPOINT = 'https://api.spacexdata.com/v3/';
-const getUrl = query => `${API_ENDPOINT}${query}`;
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -35,23 +34,25 @@ const dataReducer = (state, action) => {
 const App = () => {
   const initialState = { data: [], loading: false, isError: false };
   const [state, dispatch] = useReducer(dataReducer, initialState);
+  const [url, setUrl] = useState();
   const isMounted = useRef(false);
 
-  const handleFetchData = useCallback(async event => {
+  const handleClick = event =>
+    setUrl(`${API_ENDPOINT}${event.target.value}`)
+
+  const fetchData = useCallback(async () => {
     dispatch({ type: 'DATA_LOADING' });
 
     try {
-      const url = getUrl(event.target.value);
       const result = await axios.get(url);
       dispatch({
         type: 'DATA_SUCCESS',
         payload: result.data
       });
-      console.log(state.data);
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }
-  }, []);
+  }, [url]);
 
   console.log('Comp: A');
 
@@ -59,9 +60,9 @@ const App = () => {
     if(!isMounted.current) {
       isMounted.current = true;
     } else {
-      handleFetchData();
+      fetchData();
     }
-  }, [handleFetchData]);
+  }, [fetchData]);
 
   return (
     <div className='container'>
@@ -69,8 +70,8 @@ const App = () => {
         <h1>Hello World</h1>
       </div>
 
-      <button value='rockets' onClick={handleFetchData}>Rockets</button>
-      <button value='dragons' onClick={handleFetchData}>Dragons</button>
+      <button value='rockets' onClick={handleClick}>Rockets</button>
+      <button value='dragons' onClick={handleClick}>Dragons</button>
 
       {state.isError && <h3>Something is wrong ...</h3>}
 
