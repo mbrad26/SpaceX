@@ -46,8 +46,10 @@ const App = () => {
   const [url, setUrl] = useState();
   const isMounted = useRef(false);
 
-  const handleClick = event =>
-    setUrl(`${API_ENDPOINT}${event.target.value}`)
+  const handleClick = event => {
+    setUrl(`${API_ENDPOINT}${event.target.innerHTML}`)
+    event.preventDefault();
+  }
 
   const fetchData = useCallback(async () => {
     dispatch({ type: 'DATA_LOADING' });
@@ -74,15 +76,12 @@ const App = () => {
   }, [fetchData]);
 
   return (
-    <Context.Provider value={state.data}>
+    <Context.Provider value={{ data: state.data, handleClick: handleClick }}>
       <Navbar />
       <div className='container'>
         <div className='row justify-content-center'>
-          <h1>Hello World</h1>
+          <h1>SpaceX</h1>
         </div>
-
-        <button value='rockets' onClick={handleClick}>Rockets</button>
-        <button value='dragons' onClick={handleClick}>Dragons</button>
 
         {state.isError && <h3>Something is wrong ...</h3>}
 

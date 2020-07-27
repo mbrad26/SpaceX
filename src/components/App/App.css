@@ -1,5 +1,10 @@
 body {
-  background-color: #e5e5e5;
+  font-family: 'Space Mono', monospace;
+  /* background: url(./falcon-9-rocket-4928x3264-spacex-cape-canaveral-4k-6186.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
 }
 
 .container {

@@ -3,7 +3,7 @@ import { Context } from '../App/App';
 import './List.css';
 
 const List = () => {
-  const data = useContext(Context);
+  const { data } = useContext(Context);
 
   return (
     <div className='row justify-content-around'>
@@ -17,7 +17,7 @@ const List = () => {
 const Item = ({ item }) => {
   return (
     <div className='col-6 d-flex align-items-stretch container'>
-      <div className="card text-white bg-dark">
+      <div className="card text-white shadow-sm rounded">
         <img src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
         <div className="card-body">
           <h3 className="card-title">
