@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import './App.css';
 import List from '../List/List';
+import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -74,6 +75,7 @@ const App = () => {
 
   return (
     <Context.Provider value={state.data}>
+      <Navbar />
       <div className='container'>
         <div className='row justify-content-center'>
           <h1>Hello World</h1>
