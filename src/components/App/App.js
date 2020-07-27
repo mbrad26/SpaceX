@@ -1,7 +1,15 @@
-import React, { useState, useEffect, useReducer, useCallback, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useCallback,
+  useRef,
+} from 'react';
 import './App.css';
 import List from '../List/List';
 import axios from 'axios';
+
+const Context = React.createContext(null);
 
 const API_ENDPOINT = 'https://api.spacexdata.com/v3/';
 
@@ -65,22 +73,25 @@ const App = () => {
   }, [fetchData]);
 
   return (
-    <div className='container'>
-      <div className='row justify-content-center'>
-        <h1>Hello World</h1>
+    <Context.Provider value={state.data}>
+      <div className='container'>
+        <div className='row justify-content-center'>
+          <h1>Hello World</h1>
+        </div>
+
+        <button value='rockets' onClick={handleClick}>Rockets</button>
+        <button value='dragons' onClick={handleClick}>Dragons</button>
+
+        {state.isError && <h3>Something is wrong ...</h3>}
+
+        {state.loading
+          ? <p>Loading ...</p>
+          : <List />
+        }
       </div>
-
-      <button value='rockets' onClick={handleClick}>Rockets</button>
-      <button value='dragons' onClick={handleClick}>Dragons</button>
-
-      {state.isError && <h3>Something is wrong ...</h3>}
-
-      {state.loading
-        ? <p>Loading ...</p>
-        : <List data={state.data} />
-      }
-    </div>
+    </Context.Provider>
   )
 };
 
 export default App;
+export { Context };
