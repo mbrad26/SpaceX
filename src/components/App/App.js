@@ -1,5 +1,4 @@
 import React, {
-  useState,
   useEffect,
   useReducer,
   useCallback,
@@ -8,7 +7,7 @@ import React, {
 import './App.css';
 import List from '../List/List';
 import Navbar from '../Navbar/Navbar';
-import Modal from '../Modal/Modal';
+import ModalComponent from '../Modal/Modal';
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -45,6 +44,11 @@ const dataReducer = (state, action) => {
         ...state,
         isOpen: true,
       }
+    case 'CLOSE_MODAL':
+      return {
+        ...state,
+        isOpen: false,
+      }
     default:
       throw new Error();
   }
@@ -77,6 +81,7 @@ const App = () => {
   }, [state.url]);
 
   console.log('Comp: A');
+  console.log('Comp A isOpen: ' + state.isOpen);
 
   useEffect(() => {
     if(!isMounted.current) {
@@ -88,18 +93,22 @@ const App = () => {
 
   const handleClick = event => {
     dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
-    event.preventDefault();
   }
 
-  const handleModal = () => {
+  const handleOpenModal = () => {
     dispatch({ type: 'OPEN_MODAL' });
+  }
+
+  const handleCloseModal = () => {
+    dispatch({ type: 'CLOSE_MODAL' });
   }
 
   return (
     <Context.Provider value={{
-        data: state.data,
+        ...state,
         handleClick: handleClick,
-        handleModal: handleModal,
+        handleOpenModal: handleOpenModal,
+        handleCloseModal: handleCloseModal,
       }}
       >
       <Navbar />
@@ -119,7 +128,7 @@ const App = () => {
 
         {state.loading ? <p>Loading ...</p> : <List />}
 
-        {state.isOpen && <Modal />}
+        {state.isOpen && <ModalComponent />}
       </div>
     </Context.Provider>
   )

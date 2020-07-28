@@ -14,7 +14,7 @@ const List = () => {
 };
 
 const Item = ({ item }) => {
-  const { handleModal } = useContext(Context);
+  const { handleOpenModal } = useContext(Context);
 
   return (
     <div className='col-6 d-flex align-items-stretch container'>
@@ -25,7 +25,7 @@ const Item = ({ item }) => {
             {item.rocket_name ? item.rocket_name : item.name}
             </h3>
           <p className="card-text item-description">{item.description}</p>
-          <a href="#" onClick={handleModal}>Details</a>
+          <a href="#" onClick={handleOpenModal}>Details</a>
         </div>
       </div>
     </div>
