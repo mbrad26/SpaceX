@@ -7,7 +7,6 @@ import React, {
 import './App.css';
 import List from '../List/List';
 import Navbar from '../Navbar/Navbar';
-import ModalComponent from '../Modal/Modal';
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -75,6 +74,7 @@ const App = () => {
         type: 'DATA_SUCCESS',
         payload: result.data
       });
+      console.log(result.data);
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }
@@ -127,8 +127,6 @@ const App = () => {
         {state.isError && <h3>Something is wrong ...</h3>}
 
         {state.loading ? <p>Loading ...</p> : <List />}
-
-        {state.isOpen && <ModalComponent />}
       </div>
     </Context.Provider>
   )

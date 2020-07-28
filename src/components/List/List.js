@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../App/App';
+import ModalComponent from '../Modal/Modal';
 
 const List = () => {
   const { data } = useContext(Context);
@@ -14,21 +15,24 @@ const List = () => {
 };
 
 const Item = ({ item }) => {
-  const { handleOpenModal } = useContext(Context);
+  const { handleOpenModal, isOpen } = useContext(Context);
 
   return (
-    <div className='col-6 d-flex align-items-stretch container'>
-      <div className="card shadow rounded">
-        <img src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
-        <div className="card-body">
-          <h3 className="card-title">
-            {item.rocket_name ? item.rocket_name : item.name}
-            </h3>
-          <p className="card-text item-description">{item.description}</p>
-          <a href="#" onClick={handleOpenModal}>Details</a>
+    <>
+      <div className='col-6 d-flex align-items-stretch container'>
+        <div className="card shadow rounded">
+          <img src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
+          <div className="card-body">
+            <h3 className="card-title">
+              {item.rocket_name ? item.rocket_name : item.name}
+              </h3>
+            <p className="card-text item-description">{item.description}</p>
+            <a href="#" onClick={handleOpenModal}>Details</a>
+          </div>
         </div>
       </div>
-    </div>
+      {isOpen && <ModalComponent key={item.id} item={item} />}
+    </>
   )
 };
 
