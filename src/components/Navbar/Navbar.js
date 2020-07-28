@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import './Navbar.css';
 import logo from './SpaceX-Logo.wine.svg';
 import { Context } from '../App/App';
 
@@ -18,7 +17,7 @@ const Navbar = () => {
             loading="lazy"
           />
         </a>
-        
+
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <a className="nav-link" href='#' onClick={handleClick}>ROCKETS</a>

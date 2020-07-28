@@ -8,6 +8,7 @@ import React, {
 import './App.css';
 import List from '../List/List';
 import Navbar from '../Navbar/Navbar';
+import Modal from '../Modal/Modal';
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -26,7 +27,6 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        isError: false,
         data: action.payload,
       };
     case 'DATA_ERROR':
@@ -35,27 +35,38 @@ const dataReducer = (state, action) => {
         loading: false,
         isError: true,
       }
+    case 'SET_URL':
+      return {
+        ...state,
+        url: `${API_ENDPOINT}${action.payload}`,
+      }
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        isOpen: true,
+      }
     default:
       throw new Error();
   }
 };
 
 const App = () => {
-  const initialState = { data: [], loading: false, isError: false };
+  const initialState = {
+    data: [],
+    loading: false,
+    isError: false,
+    url: '',
+    isOpen: false,
+  };
   const [state, dispatch] = useReducer(dataReducer, initialState);
-  const [url, setUrl] = useState();
   const isMounted = useRef(false);
 
-  const handleClick = event => {
-    setUrl(`${API_ENDPOINT}${event.target.innerHTML}`)
-    event.preventDefault();
-  }
-
   const fetchData = useCallback(async () => {
+    console.log('Comp: B');
     dispatch({ type: 'DATA_LOADING' });
 
     try {
-      const result = await axios.get(url);
+      const result = await axios.get(state.url);
       dispatch({
         type: 'DATA_SUCCESS',
         payload: result.data
@@ -63,7 +74,7 @@ const App = () => {
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }
-  }, [url]);
+  }, [state.url]);
 
   console.log('Comp: A');
 
@@ -75,20 +86,40 @@ const App = () => {
     }
   }, [fetchData]);
 
+  const handleClick = event => {
+    dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
+    event.preventDefault();
+  }
+
+  const handleModal = () => {
+    dispatch({ type: 'OPEN_MODAL' });
+  }
+
   return (
-    <Context.Provider value={{ data: state.data, handleClick: handleClick }}>
+    <Context.Provider value={{
+        data: state.data,
+        handleClick: handleClick,
+        handleModal: handleModal,
+      }}
+      >
       <Navbar />
       <div className='container'>
         <div className='row justify-content-center'>
-          <h1>SpaceX</h1>
+          <h2>
+            “You want to wake up in the morning and think the future is going
+            to be great - and that’s what being a spacefaring civilization is all
+            about. It’s about believing in the future and thinking that the future
+            will be better than the past. And I can’t think of anything more
+            exciting than going out there and being among the stars.”
+            -Elon Musk
+          </h2>
         </div>
 
         {state.isError && <h3>Something is wrong ...</h3>}
 
-        {state.loading
-          ? <p>Loading ...</p>
-          : <List />
-        }
+        {state.loading ? <p>Loading ...</p> : <List />}
+
+        {state.isOpen && <Modal />}
       </div>
     </Context.Provider>
   )
