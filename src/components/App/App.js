@@ -6,8 +6,10 @@ import React, {
 } from 'react';
 import './App.css';
 import List from '../List/List';
-import Navbar from '../Navbar/Navbar';
+import NavBar from '../NavBar/NavBar';
 import ModalComponent from '../Modal/Modal';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -114,9 +116,9 @@ const App = () => {
         dispatch: dispatch,
       }}
       >
-      <Navbar />
-      <div className='container'>
-        <div className='row justify-content-center'>
+      <NavBar />
+      <Container>
+        <Row className='justify-content-center'>
           <h2>
             “You want to wake up in the morning and think the future is going
             to be great - and that’s what being a spacefaring civilization is all
@@ -125,14 +127,14 @@ const App = () => {
             exciting than going out there and being among the stars.”
             -Elon Musk
           </h2>
-        </div>
+        </Row>
 
         {state.isError && <h3>Something is wrong ...</h3>}
 
         {state.loading ? <p>Loading ...</p> : <List />}
 
         {state.isOpen && <ModalComponent />}
-      </div>
+      </Container>
     </Context.Provider>
   )
 };

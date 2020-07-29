@@ -1,4 +1,7 @@
 import React, { useContext } from 'react';
+import CardGroup from "react-bootstrap/CardGroup";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 import { Context } from '../App/App';
 
 const List = () => {
@@ -14,28 +17,26 @@ const List = () => {
 };
 
 const Item = ({ item }) => {
-  const { handleOpenModal, isOpen, dispatch } = useContext(Context);
+  const { handleOpenModal, isOpen } = useContext(Context);
 
   return (
     <>
-      <div className='col-6 d-flex align-items-stretch container'>
-        <div className="card shadow rounded">
-          <img src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
-          <div className="card-body">
-            <h3 className="card-title">
+      <CardGroup className="col-6 d-flex align-items-stretch container">
+        <Card className="shadow">
+          <Image src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
+          <Card.Body>
+            <Card.Title>
               {item.rocket_name ? item.rocket_name : item.name}
-              </h3>
-            <p className="card-text item-description">{item.description}</p>
+            </Card.Title>
+            <Card.Text className="item-description">
+              {item.description}
+            </Card.Text>
             <a href="#" onClick={() => handleOpenModal(item)}>Details</a>
-          </div>
-        </div>
-      </div>
+          </Card.Body>
+        </Card>
+      </CardGroup>
     </>
   )
 };
 
 export default List;
-
-// {item.flickr_images.map(
-//   url => <img src={url} key={url} width='400' />
-// )}

@@ -1,23 +1,24 @@
 import React, { useContext } from 'react';
 import logo from './SpaceX-Logo.wine.svg';
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import { Context } from '../App/App';
 
-const Navbar = () => {
+const NavBar = () => {
   const { handleClick } = useContext(Context);
 
   return (
-    <nav className="navbar navbar-light navbar-expand-lg">
-      <div className="container links-container">
-
+    <Navbar expand="lg">
+      <Container className="links-container">
         <a href="#">
-          <img
+          <Image
             src={logo}
             className="d-inline-block align-top"
             alt=""
             loading="lazy"
           />
         </a>
-
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <a className="nav-link" href='#' onClick={handleClick}>ROCKETS</a>
@@ -26,9 +27,9 @@ const Navbar = () => {
             <a className="nav-link"href='#' onClick={handleClick}>DRAGONS</a>
           </li>
         </ul>
-      </div>
-    </nav>
+      </Container>
+    </Navbar>
   )
 };
 
-export default Navbar;
+export default NavBar;

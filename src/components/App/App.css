@@ -17,16 +17,20 @@ body {
 /* Navbar */
 
 nav {
-  /* background-color: black; */
-  /* border-color: green; */
   margin: 20px 75px;
 }
 
+.links-container {
+  padding: 0px;
+  margin: 0px;
+}
+
+/*
 img {
   display: block;
   width: 100%;
   height: auto;
-}
+} */
 
 btn {
   border-style: hidden;
@@ -34,12 +38,6 @@ btn {
 }
 
 /* List and Item */
-
-div .links-container {
-  padding: 0px;
-  margin: 0px;
-  border: 1px red;
-}
 
 .row {
   padding: 20px;
@@ -57,14 +55,7 @@ div .links-container {
 
 .card-img-top {
   width: 100%;
-  height: 15vw;
-  object-fit: cover;
+  height: 30vh;
 }
 
 /* Modal */
-
-.image {
-  width: 100%;
-  height: 20vw;
-  object-fit: cover;
-}
