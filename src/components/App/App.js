@@ -79,13 +79,13 @@ const App = () => {
         type: 'DATA_SUCCESS',
         payload: result.data
       });
+      console.log(result.data);
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }
   }, [state.url]);
 
   console.log('Comp: A');
-  console.log('Comp A isOpen: ', state.isOpen);
 
   const handleClick = event => {
     dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
@@ -117,7 +117,7 @@ const App = () => {
       }}
       >
       <NavBar />
-      <Container>
+      <Container fluid="">
         <Row className='justify-content-center'>
           <h2>
             “You want to wake up in the morning and think the future is going
@@ -128,12 +128,13 @@ const App = () => {
             -Elon Musk
           </h2>
         </Row>
-
+        <Row>
         {state.isError && <h3>Something is wrong ...</h3>}
 
         {state.loading ? <p>Loading ...</p> : <List />}
 
         {state.isOpen && <ModalComponent />}
+        </Row>
       </Container>
     </Context.Provider>
   )

@@ -23,7 +23,7 @@ const Item = ({ item }) => {
     <>
       <CardGroup className="col-6 d-flex align-items-stretch container">
         <Card className="shadow">
-          <Image src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
+          <Card.Img src={item.flickr_images[0]} alt='SpaceX' className="card-img-top" />
           <Card.Body>
             <Card.Title>
               {item.rocket_name ? item.rocket_name : item.name}
