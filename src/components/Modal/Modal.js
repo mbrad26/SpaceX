@@ -7,34 +7,24 @@ import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import { Context } from '../App/App';
 
-const ModalComponent = ({ item }) => {
-  const { data, isOpen, handleCloseModal } = useContext(Context);
-  console.log('Modal data: ' + data);
-  console.log('Modal isOpen:' + isOpen);
-  console.log('Modal item: ' + item);
+const ModalComponent = () => {
+  const { data, isOpen, handleCloseModal, activeItem } = useContext(Context);
+  console.log('Modal activeItem: ', activeItem);
 
   return (
     <Modal
       show={isOpen}
       onHide={handleCloseModal}
     >
-      <Modal.Header closeButton={handleCloseModal}>
+      <Modal.Header closeButton>
         <Modal.Title>
-          Using Grid in Modal
+          {activeItem.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
 
         <Carousel>
-          {item.flickr_images.map(url =>
-            <Carousel.Item key={url}>
-              <img
-                className="w-100 image"
-                src={url}
-                alt="First slide"
-              />
-            </Carousel.Item>
-          )}
+
          </Carousel>
 
         <Container>
@@ -53,3 +43,13 @@ const ModalComponent = ({ item }) => {
 };
 
 export default ModalComponent;
+
+// {item.flickr_images.map(url =>
+//   <Carousel.Item key={url}>
+//     <img
+//       className="w-100 image"
+//       src={url}
+//       alt="First slide"
+//     />
+//   </Carousel.Item>
+// )}

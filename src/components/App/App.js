@@ -7,6 +7,7 @@ import React, {
 import './App.css';
 import List from '../List/List';
 import Navbar from '../Navbar/Navbar';
+import ModalComponent from '../Modal/Modal';
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -42,6 +43,7 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         isOpen: true,
+        activeItem: action.payload,
       }
     case 'CLOSE_MODAL':
       return {
@@ -60,6 +62,7 @@ const App = () => {
     isError: false,
     url: '',
     isOpen: false,
+    activeItem: '',
   };
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const isMounted = useRef(false);
@@ -74,14 +77,25 @@ const App = () => {
         type: 'DATA_SUCCESS',
         payload: result.data
       });
-      console.log(result.data);
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }
   }, [state.url]);
 
   console.log('Comp: A');
-  console.log('Comp A isOpen: ' + state.isOpen);
+  console.log('Comp A isOpen: ', state.isOpen);
+
+  const handleClick = event => {
+    dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
+  }
+
+  const handleOpenModal = item => {
+    dispatch({ type: 'OPEN_MODAL', payload: item});
+  }
+
+  const handleCloseModal = () => {
+    dispatch({ type: 'CLOSE_MODAL' });
+  }
 
   useEffect(() => {
     if(!isMounted.current) {
@@ -91,24 +105,13 @@ const App = () => {
     }
   }, [fetchData]);
 
-  const handleClick = event => {
-    dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
-  }
-
-  const handleOpenModal = () => {
-    dispatch({ type: 'OPEN_MODAL' });
-  }
-
-  const handleCloseModal = () => {
-    dispatch({ type: 'CLOSE_MODAL' });
-  }
-
   return (
     <Context.Provider value={{
         ...state,
         handleClick: handleClick,
         handleOpenModal: handleOpenModal,
         handleCloseModal: handleCloseModal,
+        dispatch: dispatch,
       }}
       >
       <Navbar />
@@ -127,6 +130,8 @@ const App = () => {
         {state.isError && <h3>Something is wrong ...</h3>}
 
         {state.loading ? <p>Loading ...</p> : <List />}
+
+        {state.isOpen && <ModalComponent />}
       </div>
     </Context.Provider>
   )

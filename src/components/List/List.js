@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Context } from '../App/App';
-import ModalComponent from '../Modal/Modal';
 
 const List = () => {
   const { data } = useContext(Context);
@@ -15,7 +14,7 @@ const List = () => {
 };
 
 const Item = ({ item }) => {
-  const { handleOpenModal, isOpen } = useContext(Context);
+  const { handleOpenModal, isOpen, dispatch } = useContext(Context);
 
   return (
     <>
@@ -27,11 +26,10 @@ const Item = ({ item }) => {
               {item.rocket_name ? item.rocket_name : item.name}
               </h3>
             <p className="card-text item-description">{item.description}</p>
-            <a href="#" onClick={handleOpenModal}>Details</a>
+            <a href="#" onClick={() => handleOpenModal(item)}>Details</a>
           </div>
         </div>
       </div>
-      {isOpen && <ModalComponent key={item.id} item={item} />}
     </>
   )
 };
