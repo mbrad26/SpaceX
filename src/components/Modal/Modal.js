@@ -8,6 +8,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { Context } from '../App/App';
 import Stats from './Stats';
+import Images from './Images';
 import './Modal.css';
 
 const ModalComponent = () => {
@@ -27,16 +28,9 @@ const ModalComponent = () => {
           {activeItem.rocket_name ? activeItem.rocket_name : activeItem.name}
         </Modal.Title>
       </Modal.Header>
-      <Carousel>
-        {activeItem.flickr_images.map(url =>
-          <Carousel.Item key={url}>
-            <Image
-              src={url}
-              alt="First slide"
-            />
-          </Carousel.Item>
-        )}
-      </Carousel>
+
+      <Images activeItem={activeItem} />
+      
       <Modal.Body className="show-grid">
         <Container fluid>
           <Row>
