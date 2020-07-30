@@ -4,7 +4,6 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
-import './App.css';
 import List from '../List/List';
 import NavBar from '../NavBar/NavBar';
 import ModalComponent from '../Modal/Modal';
@@ -12,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from 'axios';
+import './App.css';
 
 const Context = React.createContext(null);
 

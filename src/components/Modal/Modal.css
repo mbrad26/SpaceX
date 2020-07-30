@@ -1,0 +1,29 @@
+Modal .container-fluid {
+  padding: 16px;
+}
+
+#wiki {
+  margin-bottom: 0px;
+}
+
+.row {
+  padding: 0px 0px;
+
+}
+
+.col {
+  padding:  0px;
+  font-size: 0.9rem;
+  justify-content: center;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 375px;
+  overflow: hidden;
+}
+.carousel-item img {
+  width: 100%;
+  height: 375px;
+  object-fit: cover;
+}

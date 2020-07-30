@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { Context } from '../App/App';
+import './Modal.css';
 
 const ModalComponent = () => {
   const { data, isOpen, handleCloseModal, activeItem } = useContext(Context);
@@ -65,7 +66,6 @@ const ModalComponent = () => {
               <p><span>Thrust at sea level in lbf: </span>{activeItem.engines.thrust_sea_level.lbf}</p>
             </>
           }
-
 
           <p><span>First flight: </span>{activeItem.first_flight}</p>
 
