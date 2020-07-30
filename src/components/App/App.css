@@ -9,12 +9,21 @@ body {
   background-size: cover; */
 }
 
+#title {
+  padding: 20px;
+  width: 1000px;
+}
+
 .container {
   padding: 20px;
   width: 850px;
 }
 
 /* Navbar */
+
+#navbar {
+  z-index: 1;
+}
 
 nav {
   margin: 20px 75px;

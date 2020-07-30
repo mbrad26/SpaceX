@@ -10,6 +10,7 @@ import NavBar from '../NavBar/NavBar';
 import ModalComponent from '../Modal/Modal';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import axios from 'axios';
 
 const Context = React.createContext(null);
@@ -117,23 +118,29 @@ const App = () => {
       }}
       >
       <NavBar />
-      <Container fluid="">
+      <Container id="title">
         <Row className='justify-content-center'>
-          <h2>
-            “You want to wake up in the morning and think the future is going
-            to be great - and that’s what being a spacefaring civilization is all
-            about. It’s about believing in the future and thinking that the future
-            will be better than the past. And I can’t think of anything more
-            exciting than going out there and being among the stars.”
-            -Elon Musk
-          </h2>
+          <Col lg={12}>
+            <h2>
+              “You want to wake up in the morning and think the future is going
+              to be great - and that’s what being a spacefaring civilization is all
+              about. It’s about believing in the future and thinking that the future
+              will be better than the past. And I can’t think of anything more
+              exciting than going out there and being among the stars.”
+            </h2>
+            <h2 className="text-right">
+              -Elon Musk
+            </h2>
+          </Col>
         </Row>
+      </Container>
+      <Container>
         <Row>
-        {state.isError && <h3>Something is wrong ...</h3>}
+          {state.isError && <h3>Something is wrong ...</h3>}
 
-        {state.loading ? <p>Loading ...</p> : <List />}
+          {state.loading ? <p>Loading ...</p> : <List />}
 
-        {state.isOpen && <ModalComponent />}
+          {state.isOpen && <ModalComponent />}
         </Row>
       </Container>
     </Context.Provider>
