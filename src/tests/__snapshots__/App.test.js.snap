@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item renders snapshot 1`] = `
+<div
+  class="col-6 d-flex align-items-stretch container card-group"
+>
+  <div
+    class="shadow card"
+  >
+    <img
+      alt="SpaceX"
+      class="card-img card-img-top"
+    />
+    <div
+      class="card-body"
+    >
+      <div
+        class="card-title h5"
+      >
+        Rocket One
+      </div>
+      <p
+        class="item-description card-text"
+      >
+        This is Rocket One
+      </p>
+      <a
+        href="#"
+      >
+        Details
+      </a>
+    </div>
+  </div>
+</div>
+`;

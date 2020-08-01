@@ -2,6 +2,9 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App, { Context } from '../components/App/App';
 import List, { Item } from '../components/List/List';
+import axios from 'axios';
+
+jest.mock('axios');
 
 const itemOne = {
   id: 1,
@@ -38,6 +41,16 @@ describe('Item', () => {
         <Item item={itemOne}/>
       </Context.Provider>
     );
+  });
+
+  it('renders snapshot', () => {
+    const { container } = render(
+      <Context.Provider value={context}>
+        <Item item={itemOne}/>
+      </Context.Provider>
+    );
+    
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders all properties', () => {
@@ -79,6 +92,5 @@ describe('List', () => {
     );
 
     expect(screen.getByTestId('wrapper').children.length).toBe(2);
-    screen.debug();
   });
 });
