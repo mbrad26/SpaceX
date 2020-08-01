@@ -17,14 +17,14 @@ const itemTwo = {
   description: 'This is Rocket Two',
 };
 
-const itemThree = {
+const dragon = {
   id: 1,
   flickr_images: [],
-  name: 'Rocket Three',
-  description: 'This is Rocket Three',
+  name: 'Dragon 1',
+  description: 'This is Dragon 1',
 }
 
-const data = [itemOne, itemTwo];
+const dataRockets = [itemOne, itemTwo];
 
 describe('Item', () => {
   let context;
@@ -46,6 +46,17 @@ describe('Item', () => {
     expect(screen.getByText('Details')).toHaveAttribute('href', '#');
   });
 
+
+  it('renders dragons', () => {
+    render(
+      <Context.Provider value={context}>
+        <Item item={dragon} />
+      </Context.Provider>
+    );
+
+    expect(screen.getByText(dragon.name)).toBeInTheDocument();
+  });
+
   it('opens a modal', () => {
     const link = screen.getByText('Details');
 
@@ -59,7 +70,7 @@ describe('Item', () => {
 describe('List', () => {
   it('renders data', () => {
     const context = {
-      data: data,
+      data: dataRockets,
     }
   render(
       <Context.Provider value={context}>
