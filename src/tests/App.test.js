@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App, { Context } from '../components/App/App';
 import { Item } from '../components/List/List';
 
@@ -21,11 +21,24 @@ describe('Item', () => {
       </Context.Provider>
     );
 
-    expect(screen.getAllByText(/rocket one/i)[0]).toBeInTheDocument();
-    expect(screen.getAllByText(/rocket one/i)[1]).toBeInTheDocument();
-    expect(screen.getAllByText(itemOne.description)[0]).toBeInTheDocument();
+    expect(screen.getByText(itemOne.rocket_name)).toBeInTheDocument();
+    expect(screen.getByText(itemOne.description)).toBeInTheDocument();
     expect(screen.getByText('Details')).toHaveAttribute('href', '#');
-    screen.debug();
   });
 
+  it('opens a modal', () => {
+    const context = {
+      handleOpenModal: jest.fn(),
+    }
+    render(
+      <Context.Provider value={context}>
+        <Item item={itemOne}/>
+      </Context.Provider>
+    );
+    const link = screen.getByText('Details');
+
+    fireEvent.click(link);
+
+    expect(context.handleOpenModal).toHaveBeenCalledTimes(1);
+  });
 });
