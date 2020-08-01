@@ -30,7 +30,7 @@ const ModalComponent = () => {
       </Modal.Header>
 
       <Images activeItem={activeItem} />
-      
+
       <Modal.Body className="show-grid">
         <Container fluid>
           <Row>

@@ -18,7 +18,7 @@ const List = () => {
 };
 
 const Item = ({ item }) => {
-  const { handleOpenModal, isOpen } = useContext(Context);
+  const { handleOpenModal } = useContext(Context);
 
   return (
     <>
@@ -41,3 +41,4 @@ const Item = ({ item }) => {
 };
 
 export default List;
+export { Item };

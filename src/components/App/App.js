@@ -70,8 +70,9 @@ const App = () => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const isMounted = useRef(false);
 
+  console.log('Comp: A');
+
   const fetchData = useCallback(async () => {
-    console.log('Comp: B');
     dispatch({ type: 'DATA_LOADING' });
 
     try {
@@ -85,8 +86,6 @@ const App = () => {
         dispatch({ type: 'DATA_ERROR' });
     }
   }, [state.url]);
-
-  console.log('Comp: A');
 
   const handleClick = event => {
     dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
