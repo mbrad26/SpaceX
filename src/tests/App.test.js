@@ -7,27 +7,23 @@ const itemOne = {
   id: 1,
   flickr_images: [],
   rocket_name: 'Rocket One',
-  description: 'This is Rocket One'
-}
+  description: 'This is Rocket One',
+};
+
+const itemTwo = {
+  id: 2,
+  flickr_images: [],
+  rocket_name: 'Rocket Two',
+  description: 'This is Rocket Two',
+};
+
+const data = [itemOne, itemTwo];
 
 describe('Item', () => {
-  it('renders all properties', () => {
-    const context = {
-      handleOpenModal: jest.fn(),
-    }
-    render(
-      <Context.Provider value={context}>
-        <Item item={itemOne} />
-      </Context.Provider>
-    );
+  let context;
 
-    expect(screen.getByText(itemOne.rocket_name)).toBeInTheDocument();
-    expect(screen.getByText(itemOne.description)).toBeInTheDocument();
-    expect(screen.getByText('Details')).toHaveAttribute('href', '#');
-  });
-
-  it('opens a modal', () => {
-    const context = {
+  beforeEach(() => {
+    context = {
       handleOpenModal: jest.fn(),
     }
     render(
@@ -35,6 +31,15 @@ describe('Item', () => {
         <Item item={itemOne}/>
       </Context.Provider>
     );
+  });
+
+  it('renders all properties', () => {
+    expect(screen.getByText(itemOne.rocket_name)).toBeInTheDocument();
+    expect(screen.getByText(itemOne.description)).toBeInTheDocument();
+    expect(screen.getByText('Details')).toHaveAttribute('href', '#');
+  });
+
+  it('opens a modal', () => {
     const link = screen.getByText('Details');
 
     fireEvent.click(link);
@@ -43,3 +48,9 @@ describe('Item', () => {
     expect(context.handleOpenModal).toHaveBeenCalledWith(itemOne);
   });
 });
+
+// describe('List', () => {
+//   it('renders data', () => {
+//     const co
+//   });
+// });
