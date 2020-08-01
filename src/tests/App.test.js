@@ -40,5 +40,6 @@ describe('Item', () => {
     fireEvent.click(link);
 
     expect(context.handleOpenModal).toHaveBeenCalledTimes(1);
+    expect(context.handleOpenModal).toHaveBeenCalledWith(itemOne);
   });
 });
