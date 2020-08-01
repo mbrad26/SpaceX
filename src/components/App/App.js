@@ -147,4 +147,4 @@ const App = () => {
 };
 
 export default App;
-export { Context };
+export { Context, dataReducer };

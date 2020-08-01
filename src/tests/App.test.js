@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import App, { Context } from '../components/App/App';
+import App, { Context, dataReducer } from '../components/App/App';
 import List, { Item } from '../components/List/List';
 import axios from 'axios';
 
@@ -28,6 +28,89 @@ const dragon = {
 }
 
 const dataRockets = [itemOne, itemTwo];
+const path =  "https://api.spacexdata.com/v3/"
+const endPoint = 'rockets';
+
+describe('dataReducer', () => {
+  it('returns loading == true', () => {
+    const action = { type: 'DATA_LOADING' };
+    const state = {
+      data: [],
+      loading: false,
+      isError: false,
+    }
+
+    const newState = dataReducer(state, action);
+    const expectedState = { data: [], loading: true, isError: false}
+
+    expect(newState).toStrictEqual(expectedState);
+  });
+
+  it('returns data on success', () => {
+    const action = { type: 'DATA_SUCCESS', payload: dataRockets }
+    const state = {
+      data: [],
+      loading: true,
+      isError: false
+    }
+
+    const newState = dataReducer(state, action);
+    const expectedState = { data: dataRockets, loading: false, isError: false };
+
+    expect(newState).toStrictEqual(expectedState);
+  });
+
+  it('returns isError on failure', () => {
+    const action = { type: 'DATA_ERROR' }
+    const state = {
+      data: [],
+      loading: true,
+      isError: false
+    }
+
+    const newState = dataReducer(state, action);
+    const expectedState = { data: [], loading: false, isError: true };
+
+    expect(newState).toStrictEqual(expectedState);
+  });
+
+  it('sets URL', () => {
+    const action = { type: 'SET_URL', payload:  endPoint }
+    const state = {
+      url: ''
+    }
+
+    const newState = dataReducer(state, action);
+    const expectedState = { url: `${path}${endPoint}` };
+
+    expect(newState).toStrictEqual(expectedState);
+  });
+
+  it('opens the modal', () => {
+    const action = { type: 'OPEN_MODAL', payload:  itemOne }
+    const state = {
+      isOpen: false,
+      activeItem: ''
+    }
+
+    const newState = dataReducer(state, action);
+    const expectedState = { isOpen: true, activeItem: itemOne };
+
+    expect(newState).toStrictEqual(expectedState);
+  });
+
+  it('closes the modal', () => {
+    const action = { type: 'CLOSE_MODAL' }
+    const state = {
+      isOpen: true,
+    }
+
+    const newState = dataReducer(state, action);
+    const expectedState = { isOpen: false };
+
+    expect(newState).toStrictEqual(expectedState);
+  });
+});
 
 describe('Item', () => {
   let context;
@@ -49,7 +132,7 @@ describe('Item', () => {
         <Item item={itemOne}/>
       </Context.Provider>
     );
-    
+
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -81,16 +164,30 @@ describe('Item', () => {
 });
 
 describe('List', () => {
-  it('renders data', () => {
-    const context = {
+  let context;
+
+  beforeEach(() => {
+    context = {
       data: dataRockets,
     }
-  render(
+    render(
+      <Context.Provider value={context}>
+        <List />
+      </Context.Provider>
+    );
+  });
+
+  it('renders snapshot', () => {
+    const container = render(
       <Context.Provider value={context}>
         <List />
       </Context.Provider>
     );
 
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders data', () => {
     expect(screen.getByTestId('wrapper').children.length).toBe(2);
   });
 });

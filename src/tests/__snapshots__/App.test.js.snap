@@ -33,3 +33,5 @@ exports[`Item renders snapshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`List renders snapshot 1`] = `undefined`;
