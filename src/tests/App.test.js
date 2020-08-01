@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App, { Context } from '../components/App/App';
-import { Item } from '../components/List/List';
+import List, { Item } from '../components/List/List';
 
 const itemOne = {
   id: 1,
@@ -16,6 +16,13 @@ const itemTwo = {
   rocket_name: 'Rocket Two',
   description: 'This is Rocket Two',
 };
+
+const itemThree = {
+  id: 1,
+  flickr_images: [],
+  name: 'Rocket Three',
+  description: 'This is Rocket Three',
+}
 
 const data = [itemOne, itemTwo];
 
@@ -49,8 +56,18 @@ describe('Item', () => {
   });
 });
 
-// describe('List', () => {
-//   it('renders data', () => {
-//     const co
-//   });
-// });
+describe('List', () => {
+  it('renders data', () => {
+    const context = {
+      data: data,
+    }
+  render(
+      <Context.Provider value={context}>
+        <List />
+      </Context.Provider>
+    );
+
+    expect(screen.getByTestId('wrapper').children.length).toBe(2);
+    screen.debug();
+  });
+});

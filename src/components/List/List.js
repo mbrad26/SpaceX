@@ -9,7 +9,7 @@ const List = () => {
   const { data } = useContext(Context);
 
   return (
-    <div className='row justify-content-around'>
+    <div className='row justify-content-around' data-testid='wrapper'>
       {data.map(
         item => <Item key={item.id} item={item} />
       )}
