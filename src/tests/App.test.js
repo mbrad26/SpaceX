@@ -77,7 +77,6 @@ describe('App', () => {
         expect(screen.queryByText('Something is wrong ...')).toBeInTheDocument();
         expect(screen.queryByText('Loading ...')).not.toBeInTheDocument();
       }
-      screen.debug();
     });
   });
 
@@ -159,6 +158,13 @@ describe('App', () => {
       const expectedState = { isOpen: false };
 
       expect(newState).toStrictEqual(expectedState);
+    });
+
+    it('throws a new error', () => {
+      const action = { type: '' };
+      const state = {};
+
+      expect(() => dataReducer(state, action)).toThrow(new Error());
     });
   });
 });
