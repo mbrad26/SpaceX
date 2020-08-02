@@ -1,10 +1,13 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act, cleanup } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
 import App, { Context, dataReducer } from '../components/App/App';
 import List, { Item } from '../components/List/List';
 import axios from 'axios';
 
 jest.mock('axios');
+
+afterEach(cleanup);
 
 const itemOne = {
   id: 1,
@@ -31,84 +34,132 @@ const dataRockets = [itemOne, itemTwo];
 const path =  "https://api.spacexdata.com/v3/"
 const endPoint = 'rockets';
 
-describe('dataReducer', () => {
-  it('returns loading == true', () => {
-    const action = { type: 'DATA_LOADING' };
-    const state = {
-      data: [],
-      loading: false,
-      isError: false,
-    }
+describe('App', () => {
 
-    const newState = dataReducer(state, action);
-    const expectedState = { data: [], loading: true, isError: false}
+  describe('fetchData', () => {
+    it('fetches data', async () => {
+      const result = Promise.resolve({
+          data: dataRockets,
+      });
+      axios.get.mockImplementationOnce(() => result);
 
-    expect(newState).toStrictEqual(expectedState);
+      render(<App />)
+
+      expect(screen.queryByText(/Loading/)).not.toBeInTheDocument();
+
+      const rockets = screen.getByText('ROCKETS');
+      fireEvent.click(rockets);
+      // userEvent.click(rockets);
+
+      expect(screen.queryByText(/Loading/)).toBeInTheDocument();
+
+      await act(() => result);
+
+      expect(screen.queryByText(/Loading/)).toBeNull();
+      expect(screen.getByText('Rocket One')).toBeInTheDocument();
+      expect(screen.getByText('Rocket Two')).toBeInTheDocument();
+      expect(screen.getByText(itemOne.description)).toBeInTheDocument();
+      expect(screen.getByText(itemTwo.description)).toBeInTheDocument();
+    });
+
+    it('fails to fetch data', async () => {
+      const reject = Promise.reject();
+      axios.get.mockImplementationOnce(() => reject);
+      render(<App />);
+
+      fireEvent.click(screen.getByText('ROCKETS'));
+
+      expect(screen.queryByText('Loading ...')).toBeInTheDocument();
+
+      try {
+        await act(() => reject);
+      } catch {
+        expect(screen.queryByText('Something is wrong ...')).toBeInTheDocument();
+        expect(screen.queryByText('Loading ...')).not.toBeInTheDocument();
+      }
+      screen.debug();
+    });
   });
 
-  it('returns data on success', () => {
-    const action = { type: 'DATA_SUCCESS', payload: dataRockets }
-    const state = {
-      data: [],
-      loading: true,
-      isError: false
-    }
+  describe('#dataReducer', () => {
+    it('returns loading == true', () => {
+      const action = { type: 'DATA_LOADING' };
+      const state = {
+        data: [],
+        loading: false,
+        isError: false,
+      }
 
-    const newState = dataReducer(state, action);
-    const expectedState = { data: dataRockets, loading: false, isError: false };
+      const newState = dataReducer(state, action);
+      const expectedState = { data: [], loading: true, isError: false}
 
-    expect(newState).toStrictEqual(expectedState);
-  });
+      expect(newState).toStrictEqual(expectedState);
+    });
 
-  it('returns isError on failure', () => {
-    const action = { type: 'DATA_ERROR' }
-    const state = {
-      data: [],
-      loading: true,
-      isError: false
-    }
+    it('returns data on success', () => {
+      const action = { type: 'DATA_SUCCESS', payload: dataRockets }
+      const state = {
+        data: [],
+        loading: true,
+        isError: false
+      }
 
-    const newState = dataReducer(state, action);
-    const expectedState = { data: [], loading: false, isError: true };
+      const newState = dataReducer(state, action);
+      const expectedState = { data: dataRockets, loading: false, isError: false };
 
-    expect(newState).toStrictEqual(expectedState);
-  });
+      expect(newState).toStrictEqual(expectedState);
+    });
 
-  it('sets URL', () => {
-    const action = { type: 'SET_URL', payload:  endPoint }
-    const state = {
-      url: ''
-    }
+    it('returns isError on failure', () => {
+      const action = { type: 'DATA_ERROR' }
+      const state = {
+        data: [],
+        loading: true,
+        isError: false
+      }
 
-    const newState = dataReducer(state, action);
-    const expectedState = { url: `${path}${endPoint}` };
+      const newState = dataReducer(state, action);
+      const expectedState = { data: [], loading: false, isError: true };
 
-    expect(newState).toStrictEqual(expectedState);
-  });
+      expect(newState).toStrictEqual(expectedState);
+    });
 
-  it('opens the modal', () => {
-    const action = { type: 'OPEN_MODAL', payload:  itemOne }
-    const state = {
-      isOpen: false,
-      activeItem: ''
-    }
+    it('sets URL', () => {
+      const action = { type: 'SET_URL', payload:  endPoint }
+      const state = {
+        url: ''
+      }
 
-    const newState = dataReducer(state, action);
-    const expectedState = { isOpen: true, activeItem: itemOne };
+      const newState = dataReducer(state, action);
+      const expectedState = { url: `${path}${endPoint}` };
 
-    expect(newState).toStrictEqual(expectedState);
-  });
+      expect(newState).toStrictEqual(expectedState);
+    });
 
-  it('closes the modal', () => {
-    const action = { type: 'CLOSE_MODAL' }
-    const state = {
-      isOpen: true,
-    }
+    it('opens the modal', () => {
+      const action = { type: 'OPEN_MODAL', payload:  itemOne }
+      const state = {
+        isOpen: false,
+        activeItem: ''
+      }
 
-    const newState = dataReducer(state, action);
-    const expectedState = { isOpen: false };
+      const newState = dataReducer(state, action);
+      const expectedState = { isOpen: true, activeItem: itemOne };
 
-    expect(newState).toStrictEqual(expectedState);
+      expect(newState).toStrictEqual(expectedState);
+    });
+
+    it('closes the modal', () => {
+      const action = { type: 'CLOSE_MODAL' }
+      const state = {
+        isOpen: true,
+      }
+
+      const newState = dataReducer(state, action);
+      const expectedState = { isOpen: false };
+
+      expect(newState).toStrictEqual(expectedState);
+    });
   });
 });
 
