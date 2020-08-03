@@ -29,11 +29,9 @@ exports[`List renders snapshot 1`] = `
         >
           Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of satellites and the Dragon spacecraft into orbit.
         </p>
-        <a
-          href="#"
-        >
+        <button>
           Details
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -60,11 +58,9 @@ exports[`List renders snapshot 1`] = `
         >
           This is Rocket Two
         </p>
-        <a
-          href="#"
-        >
+        <button>
           Details
-        </a>
+        </button>
       </div>
     </div>
   </div>

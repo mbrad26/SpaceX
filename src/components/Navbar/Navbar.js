@@ -8,16 +8,19 @@ import './NavBar.css';
 
 const NavBar = () => {
   const { handleClick } = useContext(Context);
+  const handleRefresh = () => window.location.reload();
 
   return (
     <Navbar expand="lg">
       <Container className="links-container">
+        <button onClick={handleRefresh}>
           <Image
             src={logo}
             className="d-inline-block align-top"
             alt=""
             loading="lazy"
           />
+        </button>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <button className="nav-link" onClick={handleClick}>ROCKETS</button>

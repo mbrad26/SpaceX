@@ -31,7 +31,6 @@ describe('Item', () => {
   it('renders all properties', () => {
     expect(screen.getByText(itemOne.rocket_name)).toBeInTheDocument();
     expect(screen.getByText(itemOne.description)).toBeInTheDocument();
-    expect(screen.getByText('Details')).toHaveAttribute('href', '#');
   });
 
   it('renders dragons', () => {

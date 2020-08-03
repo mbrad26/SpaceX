@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders snapshot 1`] = `
+exports[`NavBar renders snapshot 1`] = `
 <nav
   class="navbar navbar-expand-lg navbar-light"
 >
