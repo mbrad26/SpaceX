@@ -12,7 +12,7 @@ import Images from './Images';
 import './Modal.css';
 
 const ModalComponent = () => {
-  const { data, isOpen, handleCloseModal, activeItem } = useContext(Context);
+  const { isOpen, handleCloseModal, activeItem } = useContext(Context);
 
   return (
     <Modal

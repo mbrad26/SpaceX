@@ -70,8 +70,6 @@ const App = () => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const isMounted = useRef(false);
 
-  console.log('Comp: A');
-
   const fetchData = useCallback(async () => {
     dispatch({ type: 'DATA_LOADING' });
 
@@ -81,7 +79,6 @@ const App = () => {
         type: 'DATA_SUCCESS',
         payload: result.data
       });
-      console.log(result.data);
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }

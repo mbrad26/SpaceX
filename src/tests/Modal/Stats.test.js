@@ -1,13 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { itemOne } from '../fixtures';
 import Stats from '../../components/Modal/Stats.js';
 
 describe('Stats', () => {
   it('renders all the props', () => {
-    render(<Stats activeItem={itemOne}/>);
-    screen.debug();
+    const container = render(<Stats activeItem={itemOne}/>);
 
-    expect(screen.firstChild).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

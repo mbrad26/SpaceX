@@ -5,7 +5,7 @@ import { itemOne } from '../fixtures';
 
 describe('Images', () => {
   it('renders snapshot', () => {
-    const container = render(<Images activeItem={itemOne} />);
+    const { container } = render(<Images activeItem={itemOne} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });

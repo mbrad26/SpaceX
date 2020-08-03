@@ -19,7 +19,7 @@ describe('List', () => {
   });
 
   it('renders snapshot', () => {
-    const container = render(
+    const { container } = render(
       <Context.Provider value={context}>
         <List />
       </Context.Provider>

@@ -1,8 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent, act, waitForElement } from '@testing-library/react';
-import App, { Context, dataReducer } from '../../components/App/App.js';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { itemOne, itemTwo, dragon, dataRockets } from '../fixtures.js';
-// import List from '../../components/List/List';
+import App, { Context, dataReducer } from '../../components/App/App.js';
 import ModalComponent from '../../components/Modal/Modal';
 import Images from '../../components/Modal/Images.js';
 import axios from 'axios';
@@ -13,6 +12,12 @@ const path =  "https://api.spacexdata.com/v3/"
 const endPoint = 'rockets';
 
 describe('App', () => {
+  it('renders snapshot', () => {
+    const { container } = render(<App />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   describe('#handleCloseModal', () => {
     it('closes a modal', async () => {
       const dispatch = jest.fn();
@@ -28,9 +33,6 @@ describe('App', () => {
       )
 
       fireEvent.click(screen.getAllByRole('button', { name: 'Close' })[1]);
-
-      // expect(dispatch).toHaveBeenCalledTimes(1);
-      // expect(dispatch).toHaveBeenCalledWith({ type:  'CLOSE_MODAL' });
     });
   });
 

@@ -49,8 +49,6 @@ describe('Item', () => {
 
     fireEvent.click(link);
 
-    screen.debug();
-
     expect(context.handleOpenModal).toHaveBeenCalledTimes(1);
     expect(context.handleOpenModal).toHaveBeenCalledWith(itemOne);
   });
