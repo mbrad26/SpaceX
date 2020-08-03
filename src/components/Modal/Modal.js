@@ -13,7 +13,6 @@ import './Modal.css';
 
 const ModalComponent = () => {
   const { data, isOpen, handleCloseModal, activeItem } = useContext(Context);
-  console.log('Modal activeItem: ', activeItem);
 
   return (
     <Modal
@@ -22,6 +21,7 @@ const ModalComponent = () => {
       scrollable
       show={isOpen}
       onHide={handleCloseModal}
+      data-testid="modal"
     >
       <Modal.Header closeButton>
         <Modal.Title>
@@ -58,9 +58,3 @@ const ModalComponent = () => {
 };
 
 export default ModalComponent;
-
-// <p>{activeItem.payload_weights.map(item => {
-//   <p>item.name</p>
-//   <p>item.kg</p>
-//   <p>item.lb</p>
-// })}</p>

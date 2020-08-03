@@ -10,6 +10,7 @@ exports[`Item renders snapshot 1`] = `
     <img
       alt="SpaceX"
       class="card-img card-img-top"
+      src="url1"
     />
     <div
       class="card-body"
