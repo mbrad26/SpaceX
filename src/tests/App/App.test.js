@@ -1,73 +1,24 @@
 import React from 'react';
 import { render, screen, fireEvent, act, waitForElement } from '@testing-library/react';
-import App, { Context, dataReducer } from '../components/App/App';
-import List, { Item } from '../components/List/List';
-import ModalComponent from '../components/Modal/Modal';
-import Images from '../components/Modal/Images.js';
+import App, { Context, dataReducer } from '../../components/App/App.js';
+import { itemOne, itemTwo, dragon, dataRockets } from '../fixtures.js';
+// import List from '../../components/List/List';
+import ModalComponent from '../../components/Modal/Modal';
+import Images from '../../components/Modal/Images.js';
 import axios from 'axios';
 
 jest.mock('axios');
 
-const rocket = {
-  "id": 2,
-  "height": {
-  },
-  "diameter": {
-  },
-  flickr_images: [],
-  "mass": {
-  },
-  "payload_weights": [
-  ],
-  "second_stage": {
-    },
-    "payloads": {
-  },
-  "engines": {
-    "thrust_sea_level": {
-    },
-    "thrust_vacuum": {
-    },
-    "thrust_to_weight": 180.1
-  },
-  "landing_legs": {
-  },
-  "wikipedia": "https://en.wikipedia.org/wiki/Falcon_9",
-  "description": "Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of satellites and the Dragon spacecraft into orbit.",
-}
-
-const itemOne = {
-  id: 1,
-  flickr_images: ['url1', 'url2'],
-  rocket_name: 'Rocket One',
-  description: 'This is Rocket One',
-};
-
-const itemTwo = {
-  id: 2,
-  flickr_images: [],
-  rocket_name: 'Rocket Two',
-  description: 'This is Rocket Two',
-};
-
-const dragon = {
-  id: 1,
-  flickr_images: [],
-  name: 'Dragon 1',
-  description: 'This is Dragon 1',
-}
-
-const dataRockets = [itemOne, itemTwo];
 const path =  "https://api.spacexdata.com/v3/"
 const endPoint = 'rockets';
 
 describe('App', () => {
-  describe('handleCloseModal', () => {
+  describe('#handleCloseModal', () => {
     it('closes a modal', async () => {
       const dispatch = jest.fn();
       const context = {
         handleCloseModal: jest.fn(),
-        activeItem: rocket,
+        activeItem: itemOne,
         isOpen: true,
       }
       render(
@@ -75,7 +26,6 @@ describe('App', () => {
             {context.isOpen && <ModalComponent />}
           </Context.Provider>
       )
-      // screen.debug();
 
       fireEvent.click(screen.getAllByRole('button', { name: 'Close' })[1]);
 
@@ -84,7 +34,7 @@ describe('App', () => {
     });
   });
 
-  describe('fetchData', () => {
+  describe('#fetchData', () => {
     it('fetches data', async () => {
       const result = Promise.resolve({
           data: dataRockets,
@@ -213,99 +163,5 @@ describe('App', () => {
 
       expect(() => dataReducer(state, action)).toThrow(new Error());
     });
-  });
-});
-
-describe('Item', () => {
-  let context;
-
-  beforeEach(() => {
-    context = {
-      handleOpenModal: jest.fn(),
-    }
-    render(
-      <Context.Provider value={context}>
-        <Item item={itemOne}/>
-      </Context.Provider>
-    );
-  });
-
-  it('renders snapshot', () => {
-    const { container } = render(
-      <Context.Provider value={context}>
-        <Item item={itemOne}/>
-      </Context.Provider>
-    );
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('renders all properties', () => {
-    expect(screen.getByText(itemOne.rocket_name)).toBeInTheDocument();
-    expect(screen.getByText(itemOne.description)).toBeInTheDocument();
-    expect(screen.getByText('Details')).toHaveAttribute('href', '#');
-  });
-
-
-  it('renders dragons', () => {
-    render(
-      <Context.Provider value={context}>
-        <Item item={dragon} />
-      </Context.Provider>
-    );
-
-    expect(screen.getByText(dragon.name)).toBeInTheDocument();
-  });
-
-  it('opens a modal', () => {
-    const link = screen.getByText('Details');
-
-    fireEvent.click(link);
-
-    expect(context.handleOpenModal).toHaveBeenCalledTimes(1);
-    expect(context.handleOpenModal).toHaveBeenCalledWith(itemOne);
-  });
-});
-
-describe('List', () => {
-  let context;
-
-  beforeEach(() => {
-    context = {
-      data: dataRockets,
-    }
-    render(
-      <Context.Provider value={context}>
-        <List />
-      </Context.Provider>
-    );
-  });
-
-  it('renders snapshot', () => {
-    const container = render(
-      <Context.Provider value={context}>
-        <List />
-      </Context.Provider>
-    );
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('renders data', () => {
-    expect(screen.getByTestId('wrapper').children.length).toBe(2);
-  });
-});
-
-describe('Images', () => {
-  it('renders snapshot', () => {
-    const container = render(<Images activeItem={itemOne} />);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('renders all the images', () => {
-    render(<Images activeItem={itemOne} />);
-
-    expect(screen.getAllByRole('img').length).toBe(2);
   });
 });

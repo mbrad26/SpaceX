@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Images renders snapshot 1`] = `undefined`;
-
 exports[`Item renders snapshot 1`] = `
 <div
   class="col-6 d-flex align-items-stretch container card-group"
@@ -25,7 +23,7 @@ exports[`Item renders snapshot 1`] = `
       <p
         class="item-description card-text"
       >
-        This is Rocket One
+        Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of satellites and the Dragon spacecraft into orbit.
       </p>
       <a
         href="#"
@@ -36,5 +34,3 @@ exports[`Item renders snapshot 1`] = `
   </div>
 </div>
 `;
-
-exports[`List renders snapshot 1`] = `undefined`;
