@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Images renders snapshot 1`] = `undefined`;
+
 exports[`Item renders snapshot 1`] = `
 <div
   class="col-6 d-flex align-items-stretch container card-group"

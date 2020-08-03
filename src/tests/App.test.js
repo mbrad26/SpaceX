@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent, act, waitForElement } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import App, { Context, dataReducer } from '../components/App/App';
 import List, { Item } from '../components/List/List';
 import ModalComponent from '../components/Modal/Modal';
@@ -11,61 +10,30 @@ jest.mock('axios');
 
 const rocket = {
   "id": 2,
-  "active": true,
-  "stages": 2,
-  "boosters": 0,
-  "cost_per_launch": 50000000,
-  "success_rate_pct": 97,
-  "first_flight": "2010-06-04",
-  "country": "United States",
-  "company": "SpaceX",
   "height": {
-    "meters": 70,
-    "feet": 229.6
   },
   "diameter": {
-    "meters": 3.7,
-    "feet": 12
   },
   flickr_images: [],
   "mass": {
   },
   "payload_weights": [
   ],
-  "first_stage": {
-  },
   "second_stage": {
-
     },
     "payloads": {
   },
   "engines": {
-    "number": 9,
-    "type": "merlin",
-    "version": "1D+",
-    "layout": "octaweb",
-    "engine_loss_max": 2,
-    "propellant_1": "liquid oxygen",
-    "propellant_2": "RP-1 kerosene",
     "thrust_sea_level": {
-      "kN": 845,
-      "lbf": 190000
     },
     "thrust_vacuum": {
-      "kN": 914,
-      "lbf": 205500
     },
     "thrust_to_weight": 180.1
   },
   "landing_legs": {
-    "number": 4,
-    "material": "carbon fiber"
   },
   "wikipedia": "https://en.wikipedia.org/wiki/Falcon_9",
   "description": "Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of satellites and the Dragon spacecraft into orbit.",
-  "rocket_id": "falcon9",
-  "rocket_name": "Falcon 9",
-  "rocket_type": "rocket"
 }
 
 const itemOne = {
@@ -92,15 +60,6 @@ const dragon = {
 const dataRockets = [itemOne, itemTwo];
 const path =  "https://api.spacexdata.com/v3/"
 const endPoint = 'rockets';
-
-describe('Images', () => {
-  it('renders all the images', () => {
-    render(<Images activeItem={itemOne} />);
-
-    expect(screen.getAllByRole('img').length).toBe(2);
-    screen.debug();
-  });
-});
 
 describe('App', () => {
   describe('handleCloseModal', () => {
@@ -138,7 +97,6 @@ describe('App', () => {
 
       const rockets = screen.getByText('ROCKETS');
       fireEvent.click(rockets);
-      // userEvent.click(rockets);
 
       expect(screen.queryByText(/Loading/)).toBeInTheDocument();
 
@@ -335,5 +293,19 @@ describe('List', () => {
 
   it('renders data', () => {
     expect(screen.getByTestId('wrapper').children.length).toBe(2);
+  });
+});
+
+describe('Images', () => {
+  it('renders snapshot', () => {
+    const container = render(<Images activeItem={itemOne} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders all the images', () => {
+    render(<Images activeItem={itemOne} />);
+
+    expect(screen.getAllByRole('img').length).toBe(2);
   });
 });
