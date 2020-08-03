@@ -4,8 +4,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Carousel from "react-bootstrap/Carousel";
-import Image from "react-bootstrap/Image";
 import { Context } from '../App/App';
 import Stats from './Stats';
 import Images from './Images';
@@ -39,7 +37,9 @@ const ModalComponent = () => {
             </p>
           </Row>
 
-          <Stats activeItem={activeItem} />
+          <div>
+            <Stats activeItem={activeItem} />
+          </div>
 
           <Row>
             <Col>

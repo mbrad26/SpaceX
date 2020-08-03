@@ -79,6 +79,7 @@ const App = () => {
         type: 'DATA_SUCCESS',
         payload: result.data
       });
+      console.log(result.data);
     } catch {
         dispatch({ type: 'DATA_ERROR' });
     }
@@ -131,13 +132,11 @@ const App = () => {
         </Row>
       </Container>
       <Container>
-        <Row>
-          {state.isError && <h3>Something is wrong ...</h3>}
+        {state.isError && <h3>Something is wrong ...</h3>}
 
-          {state.loading ? <p>Loading ...</p> : <List />}
+        {state.loading ? <p>Loading ...</p> : <List />}
 
-          {state.isOpen && <ModalComponent />}
-        </Row>
+        {state.isOpen && <ModalComponent />}
       </Container>
     </Context.Provider>
   )

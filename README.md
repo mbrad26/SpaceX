@@ -13,16 +13,13 @@ Clone this repository to your local machine.
 
 ```js
 // install dependencies
-
 > npm install
 
 // start server
-
 > npm start
 
 // run tests
-
-npm test -- --coverage --watchAll
+> npm test -- --coverage --watchAll
 ```
 
 ### Tech stack

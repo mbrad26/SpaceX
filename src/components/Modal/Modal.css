@@ -2,13 +2,20 @@ Modal .container-fluid {
   padding: 16px;
 }
 
+span {
+  font-weight: bold;
+}
+
+.container-fluid {
+  padding: 0px;
+}
+
 #wiki {
   margin-bottom: 0px;
 }
 
 .row {
-  padding: 0px 0px;
-
+  padding: 0px 16px;
 }
 
 .col {
