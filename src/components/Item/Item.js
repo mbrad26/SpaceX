@@ -18,7 +18,7 @@ const Item = ({ item }) => {
             <Card.Text className="item-description">
               {item.description}
             </Card.Text>
-            <a href="#" onClick={() => handleOpenModal(item)}>Details</a>
+            <button onClick={() => handleOpenModal(item)}>Details</button>
           </Card.Body>
         </Card>
       </CardGroup>

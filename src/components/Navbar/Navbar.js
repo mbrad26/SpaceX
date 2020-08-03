@@ -12,20 +12,18 @@ const NavBar = () => {
   return (
     <Navbar expand="lg">
       <Container className="links-container">
-        <a href="#">
           <Image
             src={logo}
             className="d-inline-block align-top"
             alt=""
             loading="lazy"
           />
-        </a>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href='#' onClick={handleClick}>ROCKETS</a>
+            <button className="nav-link" onClick={handleClick}>ROCKETS</button>
           </li>
           <li className="nav-item">
-            <a className="nav-link"href='#' onClick={handleClick}>DRAGONS</a>
+            <button className="nav-link" onClick={handleClick}>DRAGONS</button>
           </li>
         </ul>
       </Container>
