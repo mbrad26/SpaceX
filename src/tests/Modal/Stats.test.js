@@ -4,7 +4,7 @@ import { itemOne } from '../fixtures';
 import Stats from '../../components/Modal/Stats.js';
 
 describe('Stats', () => {
-  it('renders all the props', () => {
+  it('renders snapshot', () => {
     const container = render(<Stats activeItem={itemOne}/>);
 
     expect(container.firstChild).toMatchSnapshot();

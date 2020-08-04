@@ -36,10 +36,38 @@ export const itemTwo = {
 };
 
 export const dragon = {
-  "id": 1,
+  "id": "1",
+  "name": "Dragon 1",
+  "type": "capsule",
+  "active": true,
+  "crew_capacity": 0,
+  "sidewall_angle_deg": 15,
+  "orbit_duration_yr": 2,
+  "dry_mass_kg": 4200,
+  "dry_mass_lb": 9300,
+  "first_flight": "2010-12-8",
+  "heat_shield": {},
   "flickr_images": [],
-  "name": 'Dragon 1',
-  "description": 'This is Dragon 1',
+  "thrusters": [
+    {
+      "thrust": {}
+    }
+  ],
+  "launch_payload_mass": {},
+  "launch_payload_vol": {},
+  "return_payload_mass": {},
+  "return_payload_vol": {},
+  "pressurized_capsule": {
+    "payload_volume": {}
+  },
+  "trunk": {
+    "trunk_volume": {},
+    "cargo": {}
+  },
+  "height_w_trunk": {},
+  "diameter": {},
+  "wikipedia": "https://en.wikipedia.org/wiki/SpaceX_Dragon",
+  "description": "Dragon is a reusable spacecraft developed by SpaceX, an American private space transportation company based in Hawthorne, California. Dragon is launched into space by the SpaceX Falcon 9 two-stage-to-orbit launch vehicle. The Dragon spacecraft was originally designed for human travel, but so far has only been used to deliver cargo to the International Space Station (ISS)."
 }
 
 export const dataRockets = [itemOne, itemTwo];
