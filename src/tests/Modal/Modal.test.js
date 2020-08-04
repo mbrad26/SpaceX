@@ -25,7 +25,7 @@ describe('ModalComponent', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders the wright props when activeItem is rocket', () => {
+  it('renders the wright props when activeItem is dragon', () => {
     context = {
       isOpen: true,
       activeItem: dragon,
@@ -37,8 +37,21 @@ describe('ModalComponent', () => {
       </Context.Provider>
     );
 
-    screen.debug();
-
     expect(screen.getByText('Dragon 1')).toBeInTheDocument();
+  });
+
+  it('renders the wright props when activeItem is rocket', () => {
+    context = {
+      isOpen: true,
+      activeItem: itemOne,
+      handleCloseModal: jest.fn(),
+    }
+    render(
+      <Context.Provider value={context}>
+        <ModalComponent />
+      </Context.Provider>
+    );
+
+    expect(screen.getByText('Rocket One')).toBeInTheDocument();
   });
 });
