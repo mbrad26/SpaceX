@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stats renders snapshot 1`] = `undefined`;
+exports[`Stats renders snapshot 1`] = `
+<h3>
+  Stats
+</h3>
+`;
+
+exports[`Stats renders the right props when activeItem is dragon 1`] = `
+<h3>
+  Stats
+</h3>
+`;

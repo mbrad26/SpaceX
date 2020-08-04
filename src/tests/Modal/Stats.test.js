@@ -1,11 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { itemOne } from '../fixtures';
+import { itemOne, dragon } from '../fixtures';
 import Stats from '../../components/Modal/Stats.js';
 
 describe('Stats', () => {
   it('renders snapshot', () => {
-    const container = render(<Stats activeItem={itemOne}/>);
+    const { container } = render(<Stats activeItem={itemOne}/>);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders the right props when activeItem is dragon', () => {
+    const { container } = render(<Stats activeItem={dragon}/>);
 
     expect(container.firstChild).toMatchSnapshot();
   });
