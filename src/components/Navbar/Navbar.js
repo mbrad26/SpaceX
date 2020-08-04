@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import logo from './SpaceX-Logo.wine.svg';
+import logo from '../../assets/SpaceX-Logo.wine.svg';
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
