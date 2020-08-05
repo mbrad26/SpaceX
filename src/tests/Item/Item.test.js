@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Context } from '../../components/App/App';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import Context from '../../context/context';
+import Provider from '../../context/provider';
+import ModalComponent from '../../components/Modal/Modal.js';
 import { itemOne, dragon } from '../fixtures';
 import Item from '../../components/Item/Item';
 
@@ -12,17 +14,19 @@ describe('Item', () => {
       handleOpenModal: jest.fn(),
     }
     render(
-      <Context.Provider value={context}>
+      <Provider value={context}>
         <Item item={itemOne}/>
-      </Context.Provider>
+      </Provider>
     );
   });
 
+  afterEach(cleanup);
+
   it('renders snapshot', () => {
     const { container } = render(
-      <Context.Provider value={context}>
+      <Provider>
         <Item item={itemOne}/>
-      </Context.Provider>
+      </Provider>
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -35,20 +39,28 @@ describe('Item', () => {
 
   it('renders dragons', () => {
     render(
-      <Context.Provider value={context}>
+      <Provider>
         <Item item={dragon} />
-      </Context.Provider>
+      </Provider>
     );
 
     expect(screen.getByText(dragon.name)).toBeInTheDocument();
   });
 
   it('opens a modal', () => {
-    const link = screen.getByText('Details');
+    screen.debug();
 
-    fireEvent.click(link);
+    fireEvent.click(screen.getByText('Details'));
 
-    expect(context.handleOpenModal).toHaveBeenCalledTimes(1);
+    render(
+      <Provider>
+        <ModalComponent />
+      </Provider>
+    );
+
+    screen.debug();
+
+    expect(context.handleOpenModal).toHaveBeenCalled();
     expect(context.handleOpenModal).toHaveBeenCalledWith(itemOne);
   });
 });

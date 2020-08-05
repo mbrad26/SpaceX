@@ -1,118 +1,19 @@
-import React, {
-  useEffect,
-  useReducer,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useContext } from 'react';
 import List from '../List/List';
 import NavBar from '../NavBar/NavBar';
 import ModalComponent from '../Modal/Modal';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import axios from 'axios';
+import Context from '../../context/context.js';
 import './App.css';
 
-const Context = React.createContext(null);
-
-const API_ENDPOINT = 'https://api.spacexdata.com/v3/';
-
-const dataReducer = (state, action) => {
-  switch (action.type) {
-    case 'DATA_LOADING':
-      return {
-        ...state,
-        loading: true,
-        isError: false,
-      };
-    case 'DATA_SUCCESS':
-      return {
-        ...state,
-        loading: false,
-        data: action.payload,
-      };
-    case 'DATA_ERROR':
-      return {
-        ...state,
-        loading: false,
-        isError: true,
-      }
-    case 'SET_URL':
-      return {
-        ...state,
-        url: `${API_ENDPOINT}${action.payload}`,
-      }
-    case 'OPEN_MODAL':
-      return {
-        ...state,
-        isOpen: true,
-        activeItem: action.payload,
-      }
-    case 'CLOSE_MODAL':
-      return {
-        ...state,
-        isOpen: false,
-      }
-    default:
-      throw new Error();
-  }
-};
-
 const App = () => {
-  const initialState = {
-    data: [],
-    loading: false,
-    isError: false,
-    url: '',
-    isOpen: false,
-    activeItem: '',
-  };
-  const [state, dispatch] = useReducer(dataReducer, initialState);
-  const isMounted = useRef(false);
-
-  const fetchData = useCallback(async () => {
-    dispatch({ type: 'DATA_LOADING' });
-
-    try {
-      const result = await axios.get(state.url);
-      dispatch({
-        type: 'DATA_SUCCESS',
-        payload: result.data
-      });
-    } catch {
-        dispatch({ type: 'DATA_ERROR' });
-    }
-  }, [state.url]);
-
-  const handleClick = event => {
-    dispatch({ type: 'SET_URL', payload: event.target.innerHTML });
-  }
-
-  const handleOpenModal = item => {
-    dispatch({ type: 'OPEN_MODAL', payload: item});
-  }
-
-  const handleCloseModal = () => {
-    dispatch({ type: 'CLOSE_MODAL' });
-  }
-
-  useEffect(() => {
-    if(!isMounted.current) {
-      isMounted.current = true;
-    } else {
-      fetchData();
-    }
-  }, [fetchData]);
+  const { isError, loading, isOpen } = useContext(Context);
+  console.log('Comp A');
 
   return (
-    <Context.Provider value={{
-        ...state,
-        handleClick: handleClick,
-        handleOpenModal: handleOpenModal,
-        handleCloseModal: handleCloseModal,
-        dispatch: dispatch,
-      }}
-      >
+    <div>
       <NavBar />
       <Container id="title">
         <Row className='justify-content-center'>
@@ -131,15 +32,14 @@ const App = () => {
         </Row>
       </Container>
       <Container>
-        {state.isError && <h3>Something is wrong ...</h3>}
+        {isError && <h3>Something is wrong ...</h3>}
 
-        {state.loading ? <p>Loading ...</p> : <List />}
+        {loading ? <p>Loading ...</p> : <List />}
 
-        {state.isOpen && <ModalComponent />}
+        {isOpen && <ModalComponent />}
       </Container>
-    </Context.Provider>
+    </div>
   )
 };
 
 export default App;
-export { Context, dataReducer };

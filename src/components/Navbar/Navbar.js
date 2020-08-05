@@ -3,7 +3,7 @@ import logo from '../../assets/SpaceX-Logo.wine.svg';
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-import { Context } from '../App/App';
+import Context from '../../context/context.js';
 import './NavBar.css';
 
 const NavBar = () => {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import CardGroup from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
-import { Context } from '../App/App';
+import Context from '../../context/context.js';
 
 const Item = ({ item }) => {
   const { handleOpenModal } = useContext(Context);

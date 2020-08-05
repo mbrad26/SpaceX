@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { Context } from '../App/App';
+import Context from '../../context/context.js';
 import Stats from './Stats';
 import Images from './Images';
 import './Modal.css';

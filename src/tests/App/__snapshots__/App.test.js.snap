@@ -1,42 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders snapshot 1`] = `
-<nav
-  class="navbar navbar-expand-lg navbar-light"
->
-  <div
-    class="links-container container"
+<div>
+  <nav
+    class="navbar navbar-expand-lg navbar-light"
   >
-    <button>
-      <img
-        alt=""
-        class="d-inline-block align-top"
-        loading="lazy"
-        src="SpaceX-Logo.wine.svg"
-      />
-    </button>
-    <ul
-      class="navbar-nav mr-auto"
+    <div
+      class="links-container container"
     >
-      <li
-        class="nav-item active"
+      <button>
+        <img
+          alt=""
+          class="d-inline-block align-top"
+          loading="lazy"
+          src="SpaceX-Logo.wine.svg"
+        />
+      </button>
+      <ul
+        class="navbar-nav mr-auto"
       >
-        <button
-          class="nav-link"
+        <li
+          class="nav-item active"
         >
-          ROCKETS
-        </button>
-      </li>
-      <li
-        class="nav-item"
+          <button
+            class="nav-link"
+          >
+            ROCKETS
+          </button>
+        </li>
+        <li
+          class="nav-item"
+        >
+          <button
+            class="nav-link"
+          >
+            DRAGONS
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div
+    class="container"
+    id="title"
+  >
+    <div
+      class="justify-content-center row"
+    >
+      <div
+        class="col-lg-12"
       >
-        <button
-          class="nav-link"
+        <h2>
+          “You want to wake up in the morning and think the future is going to be great - and that’s what being a spacefaring civilization is all about. It’s about believing in the future and thinking that the future will be better than the past. And I can’t think of anything more exciting than going out there and being among the stars.”
+        </h2>
+        <h2
+          class="text-right"
         >
-          DRAGONS
-        </button>
-      </li>
-    </ul>
+          -Elon Musk
+        </h2>
+      </div>
+    </div>
   </div>
-</nav>
+  <div
+    class="container"
+  >
+    <div
+      class="row justify-content-around"
+      data-testid="wrapper"
+    />
+  </div>
+</div>
 `;

@@ -1,24 +1,22 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Navbar from '../../components/NavBar/NavBar.js';
-import { Context } from '../../components/App/App.js';
+import Provider from '../../context/provider';
+import Navbar from '../../components/NavBar/NavBar';
+import Context from '../../context/context';
 
 describe('NavBar', () => {
   it('renders snapshot', () => {
-    const context = {
-      handleClick: jest.fn()
-    }
     const { container } = render(
-      <Context.Provider value={context}>
+      <Provider>
         <Navbar />
-      </Context.Provider>
+      </Provider>
     );
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('calls handleRefresh', () => {
-    const { location } = window;
+    // const { location } = window;
     delete window.location;
     window.location = { reload: jest.fn() };
 
@@ -26,9 +24,9 @@ describe('NavBar', () => {
       handleClick: jest.fn()
     }
     const { container } = render(
-      <Context.Provider value={context}>
+      <Provider value={context}>
         <Navbar />
-      </Context.Provider>
+      </Provider>
     );
 
     fireEvent.click(screen.getAllByRole('button')[0]);
