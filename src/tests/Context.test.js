@@ -169,6 +169,6 @@ describe('#dataReducer', () => {
     const action = { type: '' };
     const state = {};
 
-    expect(() => dataReducer(state, action)).toThrow(new Error());
+    expect(dataReducer(state, action)).toStrictEqual(state);
   });
 });

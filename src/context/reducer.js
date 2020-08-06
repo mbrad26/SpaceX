@@ -37,7 +37,7 @@ const dataReducer = (state, action) => {
         isOpen: false,
       }
     default:
-      throw new Error();
+      return state;
   }
 };
 
