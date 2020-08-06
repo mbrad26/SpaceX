@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import Context from '../../context/context';
-import Provider from '../../context/provider';
+import { Provider } from '../../context/provider';
 import ModalComponent from '../../components/Modal/Modal.js';
 import { itemOne, dragon } from '../fixtures';
 import Item from '../../components/Item/Item';
@@ -45,22 +45,5 @@ describe('Item', () => {
     );
 
     expect(screen.getByText(dragon.name)).toBeInTheDocument();
-  });
-
-  it('opens a modal', () => {
-    screen.debug();
-
-    fireEvent.click(screen.getByText('Details'));
-
-    render(
-      <Provider>
-        <ModalComponent />
-      </Provider>
-    );
-
-    screen.debug();
-
-    expect(context.handleOpenModal).toHaveBeenCalled();
-    expect(context.handleOpenModal).toHaveBeenCalledWith(itemOne);
   });
 });

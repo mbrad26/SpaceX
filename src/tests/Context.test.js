@@ -7,7 +7,7 @@ import Images from '../components/Modal/Images';
 import App from '../components/App/App';
 import Button from "react-bootstrap/Button";
 import Context from '../context/context';
-import Provider from '../context/provider';
+import { Provider } from '../context/provider';
 import { dataReducer } from '../context/reducer';
 import axios from 'axios';
 
