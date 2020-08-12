@@ -30,7 +30,5 @@ describe('App', () => {
     fireEvent.click(screen.getByText('DRAGONS'));
 
     expect(screen.getByText('Loading ...')).toBeInTheDocument();
-
-    screen.debug();
   });
 });

@@ -12,7 +12,7 @@ exports[`NavBar renders snapshot 1`] = `
         alt=""
         class="d-inline-block align-top"
         loading="lazy"
-        src="SpaceX-Logo.wine.svg"
+        src="SpaceX-Logo.svg"
       />
     </button>
     <ul
