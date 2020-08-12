@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from "react-bootstrap/Image";
-import Carousel from "react-bootstrap/Carousel";
+
+import { Image, Carousel } from "react-bootstrap";
 
 const Images = ({ activeItem }) => (
   <Carousel>

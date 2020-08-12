@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import List from '../List/List';
 import NavBar from '../NavBar/NavBar';
 import ModalComponent from '../Modal/Modal';
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Context from '../../context/context.js';
 import './App.css';
+
+import { Container, Row, Col } from "react-bootstrap";
 
 const App = () => {
   const { isError, loading, isOpen } = useContext(Context);

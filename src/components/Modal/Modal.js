@@ -1,13 +1,10 @@
 import React, { useContext } from 'react';
-import Modal from "react-bootstrap/Modal";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Context from '../../context/context.js';
 import Stats from './Stats';
 import Images from './Images';
 import './Modal.css';
+
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 
 const ModalComponent = () => {
   const { isOpen, handleCloseModal, activeItem } = useContext(Context);
