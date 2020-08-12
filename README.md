@@ -30,3 +30,9 @@ Clone this repository to your local machine.
 - CSS
 - HTML
 - Jest + react testing library
+
+### To do
+
+* Update the README with a screen shot and a short description of the process.
+* Extract `fetchData` to own file.
+* Add more tests to cover edge cases and to improve coverage overall.
