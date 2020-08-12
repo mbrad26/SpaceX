@@ -9,7 +9,6 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const App = () => {
   const { isError, loading, isOpen } = useContext(Context);
-  console.log('Comp A');
 
   return (
     <div>
