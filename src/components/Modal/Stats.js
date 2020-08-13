@@ -7,7 +7,7 @@ const Stats = ({ activeItem }) => (
     <p><span>Active: </span>{activeItem.active ? <>Yes</>: <>No</>}</p>
     {activeItem.type &&
         <p><span>Type: </span>{activeItem.type}</p>}
-    {activeItem.crew_capacity !== "0" &&
+    {activeItem.crew_capacity !== '0' &&
       activeItem.crew_capacity
       ? <p><span>Crew: </span>{activeItem.crew_capacity}</p>
       : null}
@@ -127,7 +127,7 @@ const Stats = ({ activeItem }) => (
         <p><span>Second stage fuel amount in tons: </span>{activeItem.second_stage.fuel_amount_tons}</p>
       </>
     }
-    {activeItem.success_rate_pct !== "0" &&
+    {activeItem.success_rate_pct !== '0' &&
       activeItem.success_rate_pct ? <p><span>Success rate: </span>{activeItem.success_rate_pct}%</p> : null}
   </>
 );

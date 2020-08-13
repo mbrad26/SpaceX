@@ -4,19 +4,19 @@ import Stats from './Stats';
 import Images from './Images';
 import './Modal.css';
 
-import { Container, Row, Col, Button, Modal } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 
 const ModalComponent = () => {
   const { isOpen, handleCloseModal, activeItem } = useContext(Context);
 
   return (
     <Modal
-      fade="true"
+      fade='true'
       centered
       scrollable
       show={isOpen}
       onHide={handleCloseModal}
-      data-testid="modal"
+      data-testid='modal'
     >
       <Modal.Header closeButton>
         <Modal.Title>
@@ -26,7 +26,7 @@ const ModalComponent = () => {
 
       <Images activeItem={activeItem} />
 
-      <Modal.Body className="show-grid">
+      <Modal.Body className='show-grid'>
         <Container fluid>
           <Row>
             <p>
@@ -40,8 +40,8 @@ const ModalComponent = () => {
 
           <Row>
             <Col>
-              <p id="wiki">
-                <a href={activeItem.wikipedia} target="_blanc">Read more on Wikipedia...</a>
+              <p id='wiki'>
+                <a href={activeItem.wikipedia} target='_blanc'>Read more on Wikipedia...</a>
               </p>
             </Col>
           </Row>

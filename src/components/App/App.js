@@ -5,7 +5,7 @@ import ModalComponent from '../Modal/Modal';
 import Context from '../../context/context.js';
 import './App.css';
 
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from 'react-bootstrap';
 
 const App = () => {
   const { isError, loading, isOpen } = useContext(Context);
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div>
       <NavBar />
-      <Container id="title">
+      <Container id='title'>
         <Row className='justify-content-center'>
           <Col lg={12}>
             <h2>
@@ -23,7 +23,7 @@ const App = () => {
               will be better than the past. And I can’t think of anything more
               exciting than going out there and being among the stars.”
             </h2>
-            <h2 className="text-right">
+            <h2 className='text-right'>
               -Elon Musk
             </h2>
           </Col>

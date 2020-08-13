@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Image, Carousel } from "react-bootstrap";
+import { Image, Carousel } from 'react-bootstrap';
 
 const Images = ({ activeItem }) => (
   <Carousel>
@@ -8,7 +8,7 @@ const Images = ({ activeItem }) => (
       <Carousel.Item key={url}>
         <Image
           src={url}
-          alt="First slide"
+          alt='First slide'
         />
       </Carousel.Item>
     )}
