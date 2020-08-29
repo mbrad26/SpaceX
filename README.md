@@ -2,6 +2,12 @@
 
 This is a small project that provides a brief overview of SpaceX's rockets and dragons capsules.
 
+![Screenshot](./images/Screenshot1.png)
+
+![Screenshot](./images/Screenshot2.png)
+
+![Screenshot](./images/Screenshot3.png)
+
 ### Approach
 
 This project was a first dive in the world of React Hooks and React Context Api as a state management solution.
