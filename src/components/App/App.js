@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import List from '../List/List';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../NavBar/NavBar.js';
 import ModalComponent from '../Modal/Modal';
 import Context from '../../context/context.js';
 import './App.css';
