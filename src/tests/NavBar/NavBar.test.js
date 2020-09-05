@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from '../../context/provider';
-import Navbar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/Navbar/Navbar';
 import Context from '../../context/context';
 
 describe('NavBar', () => {
   it('renders snapshot', () => {
     const { container } = render(
       <Provider>
-        <Navbar />
+        <NavBar />
       </Provider>
     );
 
@@ -25,7 +25,7 @@ describe('NavBar', () => {
     }
     const { container } = render(
       <Provider value={context}>
-        <Navbar />
+        <NavBar />
       </Provider>
     );
 
