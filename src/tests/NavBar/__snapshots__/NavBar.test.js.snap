@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders snapshot 1`] = `
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+>
+  <div
+    class="links-container container"
+  >
+    <button>
+      <img
+        alt=""
+        class="d-inline-block align-top"
+        loading="lazy"
+        src="SpaceX-Logo.svg"
+      />
+    </button>
+    <ul
+      class="navbar-nav mr-auto"
+    >
+      <li
+        class="nav-item active"
+      >
+        <button
+          class="nav-link"
+        >
+          ROCKETS
+        </button>
+      </li>
+      <li
+        class="nav-item"
+      >
+        <button
+          class="nav-link"
+        >
+          DRAGONS
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;
