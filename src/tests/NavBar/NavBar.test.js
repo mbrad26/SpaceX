@@ -3,13 +3,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import Context from '../../context/context.js';
 import { Provider } from '../../context/provider.js';
-import NavBar from '../../components/NavBar/NavBar.js';
+import Navbar from '../../components/Navbar/Navbar.js';
 
-describe('NavBar', () => {
+describe('Navbar', () => {
   it('renders snapshot', () => {
     const { container } = render(
       <Provider>
-        <NavBar />
+        <Navbar />
       </Provider>
     );
 
@@ -26,7 +26,7 @@ describe('NavBar', () => {
     }.js
     const { container } = render(
       <Provider value={context}>
-        <NavBar />
+        <Navbar />
       </Provider>
     );
 

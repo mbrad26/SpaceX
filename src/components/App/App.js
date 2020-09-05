@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
+
 import List from '../List/List.js';
-import NavBar from '../NavBar/NavBar.js';
+import Navbar from '../Navbar/Navbar.js';
 import ModalComponent from '../Modal/Modal.js';
 import Context from '../../context/context.js';
 import './App.css';
@@ -12,7 +13,7 @@ const App = () => {
 
   return (
     <div>
-      <NavBar />
+      <Navbar />
       <Container id='title'>
         <Row className='justify-content-center'>
           <Col lg={12}>

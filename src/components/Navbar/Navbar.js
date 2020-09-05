@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import { Navbar, Container, Image } from 'react-bootstrap';
+import { Navbar as NavBar, Container, Image } from 'react-bootstrap';
 
-import './NavBar.css';
+import './Navbar.css';
 import Context from '../../context/context.js';
 import logo from '../../assets/SpaceX-Logo.svg';
 
 
-const NavBar = () => {
+const Navbar = () => {
   const { handleClick } = useContext(Context);
   const handleRefresh = () => window.location.reload();
 
   return (
-    <Navbar expand='lg'>
+    <NavBar expand='lg'>
       <Container className="links-container">
         <button onClick={handleRefresh}>
           <Image
@@ -30,8 +30,8 @@ const NavBar = () => {
           </li>
         </ul>
       </Container>
-    </Navbar>
+    </NavBar>
   )
 };
 
-export default NavBar;
+export default Navbar;
