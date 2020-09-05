@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Image, Carousel } from 'react-bootstrap';
 
 const Images = ({ activeItem }) => (

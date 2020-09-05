@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
-import { render, screen, act, fireEvent } from '@testing-library/react';
-import { itemOne, itemTwo, dragon, dataRockets } from './fixtures';
-import ModalComponent from '../components/Modal/Modal';
-import Item from '../components/Item/Item';
-import Images from '../components/Modal/Images';
-import App from '../components/App/App';
 import Button from "react-bootstrap/Button";
-import Context from '../context/context';
-import { Provider } from '../context/provider';
-import { dataReducer } from '../context/reducer';
+import { render, screen, act, fireEvent } from '@testing-library/react';
 import axios from 'axios';
+
+import App from '../components/App/App.js';
+import Context from '../context/context.js';
+import Item from '../components/Item/Item.js';
+import { Provider } from '../context/provider.js';
+import Images from '../components/Modal/Images.js';
+import { dataReducer } from '../context/reducer.js';
+import ModalComponent from '../components/Modal/Modal.js';
+import { itemOne, itemTwo, dragon, dataRockets } from './fixtures.js';
 
 jest.mock('axios');
 

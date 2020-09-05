@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { render, screen, fireEvent, waitForElement, rerender, cleanup } from '@testing-library/react';
-import App from '../../components/App/App';
+
+import App from '../../components/App/App.js';
+import Context from '../../context/context.js';
 import List from '../../components/List/List.js';
-import { Provider } from '../../context/provider';
-import Context from '../../context/context';
+import { Provider } from '../../context/provider.js';
 import { dataReducer } from '../../context/reducer.js';
 
 afterEach(cleanup);

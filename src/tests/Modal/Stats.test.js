@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { itemOne, dragon } from '../fixtures';
-import Stats from '../../components/Modal/Stats';
+
+import { itemOne, dragon } from '../fixtures.js';
+import Stats from '../../components/Modal/Stats.js';
 
 describe('Stats', () => {
   it('renders snapshot', () => {

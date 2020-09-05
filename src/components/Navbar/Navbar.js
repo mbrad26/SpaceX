@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import logo from '../../assets/SpaceX-Logo.svg';
-import Context from '../../context/context.js';
-import './Navbar.css';
-
 import { Navbar, Container, Image } from 'react-bootstrap';
+
+import './NavBar.css';
+import Context from '../../context/context.js';
+import logo from '../../assets/SpaceX-Logo.svg';
+
 
 const NavBar = () => {
   const { handleClick } = useContext(Context);

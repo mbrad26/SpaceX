@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Images from '../../components/Modal/Images';
-import { itemOne } from '../fixtures';
+
+import { itemOne } from '../fixtures.js';
+import Images from '../../components/Modal/Images.js';
+
 
 describe('Images', () => {
   it('renders snapshot', () => {

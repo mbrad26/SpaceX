@@ -1,8 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from '../../context/provider';
-import NavBar from '../../components/Navbar/Navbar';
-import Context from '../../context/context';
+
+import Context from '../../context/context.js';
+import { Provider } from '../../context/provider.js';
+import NavBar from '../../components/NavBar/NavBar.js';
 
 describe('NavBar', () => {
   it('renders snapshot', () => {
@@ -22,7 +23,7 @@ describe('NavBar', () => {
 
     const context = {
       handleClick: jest.fn()
-    }
+    }.js
     const { container } = render(
       <Provider value={context}>
         <NavBar />

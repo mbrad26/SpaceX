@@ -1,7 +1,8 @@
 import React, { useReducer, useRef, useCallback, useEffect } from 'react';
-import Context from './context';
-import { dataReducer } from './reducer';
 import axios from 'axios';
+
+import Context from './context.js';
+import { dataReducer } from './reducer.js';
 
 const Provider = ({ children }) => {
   const initialState = {

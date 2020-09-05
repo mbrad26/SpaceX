@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import Context from '../../context/context';
-import { Provider } from '../../context/provider';
+
+import Context from '../../context/context.js';
+import { itemOne, dragon } from '../fixtures.js';
+import Item from '../../components/Item/Item.js';
+import { Provider } from '../../context/provider.js';
 import ModalComponent from '../../components/Modal/Modal.js';
-import { itemOne, dragon } from '../fixtures';
-import Item from '../../components/Item/Item';
 
 describe('Item', () => {
   let context;
