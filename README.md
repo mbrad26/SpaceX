@@ -1,4 +1,6 @@
-# **SpaceX**
+[![Build Status](https://travis-ci.org/mbrad26/SpaceX.svg?branch=master)](https://travis-ci.org/mbrad26/SpaceX)
+
+# **SpaceX**  
 
 This is a small project that provides a brief overview of SpaceX's rockets and dragons capsules.
 
