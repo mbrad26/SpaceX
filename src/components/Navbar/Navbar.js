@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Navbar as NavBar, Container, Image } from 'react-bootstrap';
 
-import './Navbar.css';
+import './Navtar.css';
 import Context from '../../context/context.js';
 import logo from '../../assets/SpaceX-Logo.svg';
 
