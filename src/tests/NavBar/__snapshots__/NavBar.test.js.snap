@@ -16,13 +16,13 @@ exports[`Navbar renders snapshot 1`] = `
       />
     </button>
     <ul
-      class="navbar-nav mr-auto"
+      class="navbar-nav w-100"
     >
       <li
         class="nav-item active"
       >
         <button
-          class="nav-link"
+          class="nav-link ml-auto"
         >
           ROCKETS
         </button>
@@ -31,7 +31,7 @@ exports[`Navbar renders snapshot 1`] = `
         class="nav-item"
       >
         <button
-          class="nav-link"
+          class="nav-link ml-auto"
         >
           DRAGONS
         </button>
