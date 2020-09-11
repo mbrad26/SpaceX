@@ -21,12 +21,12 @@ const Navbar = () => {
             loading='lazy'
           />
         </button>
-        <ul className='navbar-nav mr-auto'>
+        <ul className='navbar-nav w-100'>
           <li className='nav-item active'>
-            <button className='nav-link' onClick={handleClick}>ROCKETS</button>
+            <button className='nav-link ml-auto' onClick={handleClick}>ROCKETS</button>
           </li>
           <li className='nav-item'>
-            <button className='nav-link' onClick={handleClick}>DRAGONS</button>
+            <button className='nav-link ml-auto' onClick={handleClick}>DRAGONS</button>
           </li>
         </ul>
       </Container>
