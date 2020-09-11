@@ -5,6 +5,8 @@
 
 This is a small project that provides a brief overview of SpaceX's rockets and dragons capsules.
 
+[LIVE](https://spacex-mbrad26.netlify.app/)
+
 ![Screenshot](./images/Screenshot1.png)
 
 ![Screenshot](./images/Screenshot2.png)
